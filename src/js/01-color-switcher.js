@@ -4,23 +4,21 @@ const refs = {
   stopBtn: document.querySelector('button[data-stop]'),
 };
 
-let activeButton = refs.stopBtn.disabled
-
-buttonActivity = true
+refs.stopBtn.disabled = true
 let interval = null;
 
 refs.startBtn.addEventListener('click', () => {
   interval = setInterval(() => {
     refs.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  buttonActivity = true
-  buttonActivity = false
+  refs.startBtn.disabled = true
+  refs.stopBtn.disabled = false
 });
 
 refs.stopBtn.addEventListener('click', () => {
     clearInterval(interval)
-    buttonActivity = true
-    buttonActivity = false
+    refs.stopBtn.disabled = true
+    refs.startBtn.disabled = false
 })
 
 function getRandomHexColor() {
