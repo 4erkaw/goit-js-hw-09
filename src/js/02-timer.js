@@ -21,7 +21,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    chosenDate = selectedDates[0].getTime();
+    chosenDate = selectedDates[0];
     if (Date.now() > chosenDate) {
       Notify.failure(`Please choose a date in the future`);
       refs.startBtn.disabled = true;
