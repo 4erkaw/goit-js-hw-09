@@ -11,17 +11,21 @@ refs.startBtn.addEventListener('click', () => {
   interval = setInterval(() => {
     refs.body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  refs.startBtn.disabled = true
-  refs.stopBtn.disabled = false
+  btnChanger(true,false)
 });
 
 refs.stopBtn.addEventListener('click', () => {
     clearInterval(interval)
-    refs.stopBtn.disabled = true
-    refs.startBtn.disabled = false
+    btnChanger(false, true)
 })
 
+
+function btnChanger (a,b){
+  refs.startBtn.disabled = a
+  refs.stopBtn.disabled = b
+}
+
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`;
 }
 

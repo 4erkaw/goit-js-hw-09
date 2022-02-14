@@ -34,6 +34,7 @@ const options = {
 refs.startBtn.disabled = true;
 flatpickr('#datetime-picker', options);
 
+
 const renderTime = () => {
     diff = chosenDate - Date.now();
 
@@ -41,23 +42,28 @@ const renderTime = () => {
         clearInterval(interval)
         return
     }
-    const { days, hours, minutes, seconds } = convertMs(diff);
-  
-    refs.daysData.textContent = String(days).padStart(2, '0');
-    refs.hoursData.textContent = String(hours).padStart(2, '0');
-    refs.minutesData.textContent = String(minutes).padStart(2, '0');
-    refs.secondsData.textContent = String(seconds).padStart(2, '0');
-
-  
+   const data = convertMs(diff)
+    dataRender(data)
 }
+
+function addLeadingZero(value){
+return String(value).padStart(2, '0')
+}
+
+function dataRender({days = 0, hours = 0, minutes = 0, seconds = 0}){
+
+  refs.daysData.textContent = addLeadingZero(days)
+  refs.hoursData.textContent = addLeadingZero(hours)
+  refs.minutesData.textContent = addLeadingZero(minutes)
+  refs.secondsData.textContent = addLeadingZero(seconds)
+
+}
+
+
 
 refs.startBtn.addEventListener('click', () => {
    interval = setInterval(() => renderTime()
 ), 1000});
-
-// function addLeadingZero(value){
-//     String(value).padStart(2, '0')
-// }
 
 function convertMs(ms) {
   const second = 1000;
